@@ -36,6 +36,9 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'io.r2dbc:r2dbc-h2'
+	testImplementation 'com.tngtech.archunit:archunit-junit5:1.0.1'
+	testImplementation 'org.junit.platform:junit-platform-launcher:1.9.2'
+	testImplementation 'io.projectreactor.tools:blockhound-junit-platform:1.0.7.RELEASE'
 }
 
 tasks.named('test') {
@@ -46,4 +49,12 @@ tasks.named('test') {
 tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
 	dependsOn test
+}
+
+tasks.withType(Test).all {
+	if (JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_13)) {
+		jvmArgs += [
+				"-XX:+AllowRedefinitionToAddDeleteMethods"
+		]
+	}
 }

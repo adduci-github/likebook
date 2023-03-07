@@ -18,7 +18,7 @@ class AuthUseCase implements AuthPort {
     @Override
     public Mono<AuthResponse> auth(AuthRequest request) {
         return userPersistencePort.findByUsername(request)
-                .map(user -> jwtAuthPort.generateToken(user.getUsername()))
-                .map(AuthResponse::withToken);
+                .flatMap(user -> jwtAuthPort.generateToken(user.getUsername()))
+                .map(token -> AuthResponse.builder().accessToken(token.getAccessToken()).refreshToken(token.getRefreshToken()).build());
     }
 }

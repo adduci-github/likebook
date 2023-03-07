@@ -1,15 +1,13 @@
-package com.likebook.auth.application.port.in.dto;
+package com.likebook.auth.adapter.out.persistence.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class AuthRequest {
+public class RefreshTokenEntity {
+    private String refreshToken;
     private String username;
-    private String password;
 }

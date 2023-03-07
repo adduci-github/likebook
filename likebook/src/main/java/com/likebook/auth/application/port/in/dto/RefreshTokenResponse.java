@@ -1,15 +1,12 @@
 package com.likebook.auth.application.port.in.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class AuthResponse {
+public class RefreshTokenResponse {
     private String accessToken;
     private String refreshToken;
 }

@@ -26,12 +26,4 @@ public class UserEntity {
                 .username(this.username)
                 .build();
     }
-
-    public UserDetails toUserDetails(List<Role> roles) {
-        return UserDetails.builder()
-                .username(username)
-                .password(password)
-                .roles(roles)
-                .build();
-    }
 }

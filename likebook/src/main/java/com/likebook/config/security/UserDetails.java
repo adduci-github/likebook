@@ -16,10 +16,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
     @Setter
     private String username;
     private String password;
-    @Setter
-    private Boolean enabled;
-    @Getter @Setter
-    private List<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -54,7 +50,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return false;
     }
 
     @JsonProperty

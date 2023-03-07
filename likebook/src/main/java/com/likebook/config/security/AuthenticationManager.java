@@ -22,16 +22,13 @@ public class AuthenticationManager implements ReactiveAuthenticationManager {
         final String token = authentication.getCredentials().toString();
         final String username = jwtUtil.getUsernameFromToken(token);
 
-        return Mono.just(jwtUtil.validateToken(token))
+        return Mono.just(jwtUtil.validateAccessToken(token))
                 .filter(Boolean::booleanValue)
                 .switchIfEmpty(Mono.empty())
-                .map(valid -> createAuthenticationToken(username, token));
+                .map(valid -> createAuthenticationToken(username));
     }
 
-    private UsernamePasswordAuthenticationToken createAuthenticationToken(String username, String token) {
-        Claims claims = jwtUtil.getAllClaimsFromToken(token);
-        List<String> roles = claims.get("role", List.class);
-
-        return new UsernamePasswordAuthenticationToken(username, null, roles.stream().map(SimpleGrantedAuthority::new).toList());
+    private UsernamePasswordAuthenticationToken createAuthenticationToken(String username) {
+        return new UsernamePasswordAuthenticationToken(username, null, List.of(new SimpleGrantedAuthority("ROLE_USER")));
     }
 }

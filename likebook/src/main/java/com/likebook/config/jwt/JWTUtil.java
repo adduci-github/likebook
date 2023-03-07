@@ -1,5 +1,7 @@
 package com.likebook.config.jwt;
 
+import com.likebook.auth.adapter.out.persistence.entity.RefreshTokenEntity;
+import com.likebook.auth.domain.Token;
 import com.likebook.config.security.UserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -12,6 +14,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Component
 public class JWTUtil {
@@ -45,19 +48,32 @@ public class JWTUtil {
         return expiration.before(new Date());
     }
 
-    public String generateToken(UserDetails user) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("role", user.getRoles());
-        return doGenerateToken(claims, user.getUsername());
+    public Token reIssueToken(RefreshTokenEntity refreshToken) {
+        String accessToken = generateAccessToken(refreshToken.getUsername());
+
+        return Token.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken.getRefreshToken())
+                .build();
     }
 
-    private String doGenerateToken(Map<String, Object> claims, String username) {
+    public Token issueToken(UserDetails user) {
+        String accessToken = generateAccessToken(user.getUsername());
+        String refreshToken = UUID.randomUUID().toString();
+
+        return Token.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
+    }
+
+    private String generateAccessToken(String username) {
         Long expirationTimeLong = Long.parseLong(expirationTime); //in second
+
         final Date createdDate = new Date();
         final Date expirationDate = new Date(createdDate.getTime() + expirationTimeLong * 1000);
 
         return Jwts.builder()
-                .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(createdDate)
                 .setExpiration(expirationDate)
@@ -65,7 +81,7 @@ public class JWTUtil {
                 .compact();
     }
 
-    public Boolean validateToken(String token) {
+    public Boolean validateAccessToken(String token) {
         return !isTokenExpired(token);
     }
 }

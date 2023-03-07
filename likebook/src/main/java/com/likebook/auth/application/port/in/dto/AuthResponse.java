@@ -1,7 +1,6 @@
-package com.likebook.user.application.port.in.dto;
+package com.likebook.auth.application.port.in.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

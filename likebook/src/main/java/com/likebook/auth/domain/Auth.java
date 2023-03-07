@@ -1,11 +1,11 @@
-package com.likebook.user.domain;
+package com.likebook.auth.domain;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class User {
+public class Auth {
     private String username;
     private String password;
 }

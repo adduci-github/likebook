@@ -1,6 +1,6 @@
-package com.likebook.user.adapter.out.persistence.repository;
+package com.likebook.auth.adapter.out.persistence.repository;
 
-import com.likebook.user.adapter.out.persistence.entity.UserEntity;
+import com.likebook.auth.adapter.out.persistence.entity.UserEntity;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 

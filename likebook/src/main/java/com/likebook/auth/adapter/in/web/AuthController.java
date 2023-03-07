@@ -1,8 +1,8 @@
-package com.likebook.user.adapter.in.web;
+package com.likebook.auth.adapter.in.web;
 
-import com.likebook.user.application.port.in.AuthPort;
-import com.likebook.user.application.port.in.dto.AuthRequest;
-import com.likebook.user.application.port.in.dto.AuthResponse;
+import com.likebook.auth.application.port.in.AuthPort;
+import com.likebook.auth.application.port.in.dto.AuthRequest;
+import com.likebook.auth.application.port.in.dto.AuthResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

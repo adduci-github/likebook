@@ -1,4 +1,4 @@
-package com.likebook.user.application.port.out;
+package com.likebook.auth.application.port.out;
 
 public interface JWTAuthPort {
     String generateToken(String username);

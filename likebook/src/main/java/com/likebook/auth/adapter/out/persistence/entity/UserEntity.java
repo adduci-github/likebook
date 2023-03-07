@@ -1,8 +1,8 @@
-package com.likebook.user.adapter.out.persistence.entity;
+package com.likebook.auth.adapter.out.persistence.entity;
 
 import com.likebook.config.security.Role;
 import com.likebook.config.security.UserDetails;
-import com.likebook.user.domain.User;
+import com.likebook.auth.domain.Auth;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -21,8 +21,8 @@ public class UserEntity {
     @Column("password")
     private String password;
 
-    public User toUser() {
-        return User.builder()
+    public Auth toUser() {
+        return Auth.builder()
                 .username(this.username)
                 .build();
     }

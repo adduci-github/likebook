@@ -1,8 +1,8 @@
-package com.likebook.user.adapter.out.jwt;
+package com.likebook.auth.adapter.out.jwt;
 
 import com.likebook.config.jwt.JWTUtil;
 import com.likebook.config.security.UserDetails;
-import com.likebook.user.application.port.out.JWTAuthPort;
+import com.likebook.auth.application.port.out.JWTAuthPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

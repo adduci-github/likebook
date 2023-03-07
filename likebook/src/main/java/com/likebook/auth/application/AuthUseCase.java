@@ -1,11 +1,10 @@
-package com.likebook.user.application;
+package com.likebook.auth.application;
 
-import com.likebook.user.application.port.in.AuthPort;
-import com.likebook.user.application.port.in.dto.AuthRequest;
-import com.likebook.user.application.port.in.dto.AuthResponse;
-import com.likebook.user.application.port.out.JWTAuthPort;
-import com.likebook.user.application.port.out.UserPersistencePort;
-import com.likebook.user.domain.User;
+import com.likebook.auth.application.port.in.AuthPort;
+import com.likebook.auth.application.port.in.dto.AuthRequest;
+import com.likebook.auth.application.port.in.dto.AuthResponse;
+import com.likebook.auth.application.port.out.JWTAuthPort;
+import com.likebook.auth.application.port.out.UserPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

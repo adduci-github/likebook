@@ -2,3 +2,14 @@ spring:
   h2:
     console:
       enabled: true
+  r2dbc:
+    url: r2dbc:h2:mem:///test
+    username: sa
+    password:
+  jwt:
+    secret: ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave64ByteLength
+    expiration: 28800
+  sql:
+    init:
+      data-locations: classpath*:sql/data.sql
+      schema-locations: classpath*:sql/schema.sql

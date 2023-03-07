@@ -8,5 +8,4 @@ public class LikebookApplication {
     public static void main(String[] args) {
         SpringApplication.run(LikebookApplication.class, args);
     }
-
 }

@@ -34,8 +34,8 @@ public class JWTAuthAdapter implements JWTAuthPort {
     }
 
     @Override
-    public Mono<Token> refreshToken(RefreshTokenRequest request) {
-        return refreshTokenRepository.findByToken(request.getRefreshToken())
+    public Mono<Token> refreshToken(String refreshToken) {
+        return refreshTokenRepository.findByToken(refreshToken)
                 .map(jwtUtil::reIssueToken);
     }
 }

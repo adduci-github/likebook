@@ -6,5 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface JWTAuthPort {
     Mono<Token> generateToken(String username);
-    Mono<Token> refreshToken(RefreshTokenRequest request);
+    Mono<Token> refreshToken(String refreshToken);
 }

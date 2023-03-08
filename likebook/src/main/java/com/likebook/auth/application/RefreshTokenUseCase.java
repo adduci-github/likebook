@@ -14,7 +14,7 @@ public class RefreshTokenUseCase implements RefreshTokenPort {
     private final JWTAuthPort jwtAuthPort;
 
     public Mono<RefreshTokenResponse> refreshToken(RefreshTokenRequest request) {
-        return jwtAuthPort.refreshToken(request)
+        return jwtAuthPort.refreshToken(request.getRefreshToken())
                 .map(token -> RefreshTokenResponse.builder().accessToken(token.getAccessToken()).refreshToken(token.getRefreshToken()).build());
     }
 }

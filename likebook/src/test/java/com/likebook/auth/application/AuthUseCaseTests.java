@@ -19,8 +19,8 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AuthUseCaseTests {
-    private UserPersistencePort userPersistencePort = Mockito.mock(UserPersistencePort.class);
-    private JWTAuthPort jwtAuthPort = Mockito.mock(JWTAuthPort.class);
+    private final UserPersistencePort userPersistencePort = Mockito.mock(UserPersistencePort.class);
+    private final JWTAuthPort jwtAuthPort = Mockito.mock(JWTAuthPort.class);
 
     private final AuthRequest existsUser = AuthRequest.builder().username("test").password("test").build();
     private final AuthRequest notExistsUser = AuthRequest.builder().username("test2").password("test2").build();
@@ -49,7 +49,7 @@ public class AuthUseCaseTests {
     @BeforeEach
     public void initJWTAuthPort() {
         when(jwtAuthPort.generateToken(existsUser.getUsername()))
-                .thenReturn(Token.builder().accessToken(exampleAccessToken).refreshToken(exampleRefreshToken).build());
+                .thenReturn(Mono.just(Token.builder().accessToken(exampleAccessToken).refreshToken(exampleRefreshToken).build()));
     }
 
     @Test
